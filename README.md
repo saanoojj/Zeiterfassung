@@ -11,35 +11,44 @@
 
 ### Standardverwendung
 ```bash
-Zeiterfassung.exe
+py main.py
 ```
 Erstellt eine Excel-Datei mit Standardstundenlohn (12,50€) ohne Feiertagszuschlag
 
 ### Mit angepasstem Stundenlohn
 ```bash
-Zeiterfassung.exe --gehalt 14.50
+py main.py --gehalt 14.50
+```
+
+```bash
+py main.py -g 14.50
 ```
 Verwendet 14,50€ als Stundenlohn
 
 ### Mit Feiertagszuschlag
 ```bash
-Zeiterfassung.exe --zuschlag
+py main.py --zuschlag
+```
+
+```bash
+py main.py -z
 ```
 Aktiviert die Feiertagszuschlagsberechnung (50%)
 
 ### Mit eigenem Dateinamen
 ```bash
-Zeiterfassung.exe --dateiname MeineZeiterfassung
+py main.py --dateiname MeineZeiterfassung
+```
+
+```bash
+py main.py -d MeineZeiterfassung
 ```
 Erstellt "Zeitplan_MeineZeiterfassung_2024.xlsx"
 
 ### Alle Optionen kombiniert
 ```bash
-Zeiterfassung.exe -d MeineZeiterfassung -g 14.50 -z
+py main.py -d MeineZeiterfassung -g 14.50 -z
 ```
 Verwendet alle verfügbaren Optionen
 </details>
 
-## Lizenz
-
-[Lizenzinformationen hier]
