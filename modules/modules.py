@@ -45,7 +45,6 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, use_holiday_bonus, s
     worksheet.cell(row=4, column=1, value="Stunden")
     for tag in range(1, tage_im_monat + 1):
         worksheet.cell(row=4, column=tag + 1, value=f"{tag:02d}")
-    # Zusätzliche Spalte für Monatssumme
     worksheet.cell(row=4, column=tage_im_monat + 2, value="Gesamt")
     
     # Zeitintervalle
@@ -59,7 +58,7 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, use_holiday_bonus, s
     if use_holiday_bonus:
         worksheet.cell(row=row_offset + 3, column=1, value="Feiertagszuschlag")
     else:
-        worksheet.cell(row=row_offset + 3, column=1, value="")  # Leere Zeile für Feiertagszuschlag
+        worksheet.cell(row=row_offset + 3, column=1, value="")
     worksheet.cell(row=row_offset + 4, column=1, value="Gesamtlohn")
     
     # Styles
@@ -67,65 +66,62 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, use_holiday_bonus, s
     orange_fuellen = PatternFill(start_color='FFD8B2', end_color='FFD8B2', fill_type='solid')
     
     # Färbe Stunden-Zeile orange
-    for col in range(1, tage_im_monat + 3):  # +3 für die erste und die Gesamtspalte
+    for col in range(1, tage_im_monat + 3):
         worksheet.cell(row=4, column=col).fill = orange_fuellen
     
     # Setze Formeln und Formatierung für jeden Tag
     for tag in range(1, tage_im_monat + 1):
         spalte = get_column_letter(tag + 1)
         
-        # Markiere Feiertage gelb (bleibt für beide Varianten gleich)
+        # Markiere Feiertage gelb
         if tag in feiertage:
             for row in range(5, 5 + len(zeitintervalle)):
                 worksheet.cell(row=row, column=tag + 1).fill = gelb_fuellen
         
-        # Formeln
+        # Formeln mit ROUND-Funktion für 2 Dezimalstellen
         # Stunden gesamt
-        stunden_formel = f'=SUM({spalte}5:{spalte}28)'
+        stunden_formel = f'=ROUND(SUM({spalte}5:{spalte}28), 2)'
         worksheet.cell(row=row_offset + 1, column=tag + 1, value=stunden_formel)
         
         # Grundlohn
-        worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"={spalte}{row_offset + 1}*{stundenlohn}")
+        worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*{stundenlohn}, 2)")
         
         if use_holiday_bonus:
-            feiertagsformel = f"={spalte}{row_offset + 2}*0.5" if tag in feiertage else "=0"
+            feiertagsformel = f"=ROUND({spalte}{row_offset + 2}*0.5, 2)" if tag in feiertage else "=0"
             worksheet.cell(row=row_offset + 3, column=tag + 1, value=feiertagsformel)
-            worksheet.cell(row=row_offset + 4, column=tag + 1, value=f"={spalte}{row_offset + 2}+{spalte}{row_offset + 3}")
+            worksheet.cell(row=row_offset + 4, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 2}+{spalte}{row_offset + 3}, 2)")
         else:
-            worksheet.cell(row=row_offset + 3, column=tag + 1, value="")  # Leere Zelle für Feiertagszuschlag
-            worksheet.cell(row=row_offset + 4, column=tag + 1, value=f"={spalte}{row_offset + 2}")  # Nur Grundlohn
+            worksheet.cell(row=row_offset + 3, column=tag + 1, value="")
+            worksheet.cell(row=row_offset + 4, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 2}, 2)")
     
     # Gesamtspalte Formeln
     gesamt_spalte = get_column_letter(tage_im_monat + 2)
     
     # Stunden gesamt für den Monat
     worksheet.cell(row=row_offset + 1, column=tage_im_monat + 2, 
-                  value=f"=SUM(B{row_offset + 1}:{get_column_letter(tage_im_monat + 1)}{row_offset + 1})")
+                  value=f"=ROUND(SUM(B{row_offset + 1}:{get_column_letter(tage_im_monat + 1)}{row_offset + 1}), 2)")
     
     # Grundlohn gesamt für den Monat
     worksheet.cell(row=row_offset + 2, column=tage_im_monat + 2, 
-                  value=f"=SUM(B{row_offset + 2}:{get_column_letter(tage_im_monat + 1)}{row_offset + 2})")
+                  value=f"=ROUND(SUM(B{row_offset + 2}:{get_column_letter(tage_im_monat + 1)}{row_offset + 2}), 2)")
     
     if use_holiday_bonus:
         # Feiertagszuschlag gesamt für den Monat
         worksheet.cell(row=row_offset + 3, column=tage_im_monat + 2, 
-                      value=f"=SUM(B{row_offset + 3}:{get_column_letter(tage_im_monat + 1)}{row_offset + 3})")
+                      value=f"=ROUND(SUM(B{row_offset + 3}:{get_column_letter(tage_im_monat + 1)}{row_offset + 3}), 2)")
         
         # Gesamtlohn für den Monat (mit Zuschlag)
         worksheet.cell(row=row_offset + 4, column=tage_im_monat + 2, 
-                      value=f"=SUM(B{row_offset + 4}:{get_column_letter(tage_im_monat + 1)}{row_offset + 4})")
+                      value=f"=ROUND(SUM(B{row_offset + 4}:{get_column_letter(tage_im_monat + 1)}{row_offset + 4}), 2)")
     else:
-        # Leere Zelle für Feiertagszuschlag
         worksheet.cell(row=row_offset + 3, column=tage_im_monat + 2, value="")
-        
-        # Gesamtlohn für den Monat (ohne Zuschlag)
         worksheet.cell(row=row_offset + 4, column=tage_im_monat + 2, 
-                      value=f"=SUM(B{row_offset + 4}:{get_column_letter(tage_im_monat + 1)}{row_offset + 4})")
+                      value=f"=ROUND(SUM(B{row_offset + 4}:{get_column_letter(tage_im_monat + 1)}{row_offset + 4}), 2)")
 
     # Füge Gitterlinien hinzu
-    apply_borders(worksheet, 4, 28, 1, tage_im_monat + 2)  # +2 für die Gesamtspalte
+    apply_borders(worksheet, 4, 28, 1, tage_im_monat + 2)
     
-    # Entferne die Rahmenlinien für die letzten 4 Zeilen (Berechnungen)
+    # Entferne die Rahmenlinien für die letzten 4 Zeilen
     no_border = Border(
         left=Side(style=None),
         right=Side(style=None),
@@ -133,8 +129,8 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, use_holiday_bonus, s
         bottom=Side(style=None)
     )
     
-    for row in range(29, 33):  # Zeilen für Berechnungen
-        for col in range(1, tage_im_monat + 3):  # +3 für die erste und die Gesamtspalte
+    for row in range(29, 33):
+        for col in range(1, tage_im_monat + 3):
             worksheet.cell(row=row, column=col).border = no_border
 
 def create_overview_sheet(workbook, monatsnamen):
@@ -146,22 +142,18 @@ def create_overview_sheet(workbook, monatsnamen):
     overview.cell(row=3, column=2, value="Gesamtstunden")
     overview.cell(row=3, column=3, value="Gesamtlohn")
     
-    # Daten für jeden Monat
+    # Daten für jeden Monat mit ROUND-Funktion
     for monat in range(1, 13):
         overview.cell(row=monat + 3, column=1, value=monatsnamen[monat])
-        # Gesamtstunden - Summe der Stunden des jeweiligen Monats
         overview.cell(row=monat + 3, column=2, 
-                     value=f'=SUM(\'{monatsnamen[monat]}\'!B29:AE29)')
-        # Gesamtlohn - Summe des Gesamtlohns des jeweiligen Monats
+                     value=f'=ROUND(SUM(\'{monatsnamen[monat]}\'!B29:AE29), 2)')
         overview.cell(row=monat + 3, column=3, 
-                     value=f'=SUM(\'{monatsnamen[monat]}\'!B32:AE32)')
+                     value=f'=ROUND(SUM(\'{monatsnamen[monat]}\'!B32:AE32), 2)')
     
-    # Jahresgesamtwerte
+    # Jahresgesamtwerte mit ROUND-Funktion
     overview.cell(row=16, column=1, value="Jahresgesamt")
-    # Gesamtstunden des Jahres
-    overview.cell(row=16, column=2, value="=SUM(B4:B15)")
-    # Gesamtlohn des Jahres
-    overview.cell(row=16, column=3, value="=SUM(C4:C15)")
+    overview.cell(row=16, column=2, value="=ROUND(SUM(B4:B15), 2)")
+    overview.cell(row=16, column=3, value="=ROUND(SUM(C4:C15), 2)")
     
     # Füge Gitterlinien zur Übersicht hinzu
     apply_borders(overview, 3, 16, 1, 3)
@@ -176,27 +168,20 @@ def create_monthly_schedule(dateiname=None, use_holiday_bonus=False, stundenlohn
         9: "September", 10: "Oktober", 11: "November", 12: "Dezember"
     }
     
-    # Bestimme den Dateinamen
     if dateiname:
         excel_dateiname = f"Zeitplan_{dateiname}_{jahr}.xlsx"
     else:
         excel_dateiname = f"Zeitplan_{jahr}.xlsx"
     
-    # Erstelle Excel-Workbook
     workbook = Workbook()
-    
-    # Erstelle Übersichtssheet
     create_overview_sheet(workbook, monatsnamen)
     
-    # Erstelle Monatssheets
     for monat in range(1, 13):
         sheet = workbook.create_sheet(monatsnamen[monat])
         create_month_sheet(sheet, jahr, monat, monatsnamen, use_holiday_bonus, stundenlohn)
     
-    # Entferne das standardmäßig erstellte Sheet
     if "Sheet" in workbook.sheetnames:
         workbook.remove(workbook["Sheet"])
     
-    # Speichere Workbook
     workbook.save(excel_dateiname)
     return excel_dateiname
