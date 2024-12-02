@@ -7,20 +7,20 @@
 - "-g" oder "--gehalt" verändert den Stundenlohn entsprechend
 - "-bl" oder "--bundesland" wählt ein Bundesland für die korrekte Erkennung von Feiertagen. </br>   Ohne Angabe werden nur die generellen Feiertage (Bundesweite) markiert.
 
-#### Dateiname
+### Dateiname
 
 --
 
-#### Zuschlag
+### Zuschlag
 
 Momentan defekt/nicht funktionsfahig!
 
-#### Gehalt
+### Gehalt
 
 standard liegt bei 12.50€ ("Punkt" nicht "Komma" zur Trennung verwenden!)
 
 
-#### Bundesländer
+### Bundesländer
 
 Für die Erkennung der Feiertage wird das Module 'holidays' verwendet!
 
