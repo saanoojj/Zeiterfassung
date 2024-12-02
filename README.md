@@ -42,17 +42,7 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    2. 'Data-Sheet' 2-13 enthält die Tabelle des jeweiligen Monats (Januar - Dezember)
    3. Das Skript geht (für die Feiertage) vom Bundesland "Sachsen" aus (hardcoded, bisher keine Clicks-Option)
    4. Feiertage sind gelb markiert
-<details>
-   <summary> To-Do's</summary>
-</br>
-   
-   1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
-   2. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
-   3. Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
-   4. GUI für nutzerfreundlichere Bedienung (Custom TKinter)
-      
-   
-</details>
+
 <details>
 <summary> Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
 
@@ -107,4 +97,17 @@ py main.py -d MeineZeiterfassung -g 14.50 -z
 ```
 Verwendet alle verfügbaren Optionen
 </details>
+
+<details>
+   <summary> To-Do's</summary>
+</br>
+   
+   1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
+   2. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
+   3. Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
+   4. GUI für nutzerfreundlichere Bedienung (Custom TKinter)
+      
+   
+</details>
+
 
