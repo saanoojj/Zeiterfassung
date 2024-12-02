@@ -14,7 +14,17 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    2. 'Data-Sheet' 2-13 enthält die Tabelle des jeweiligen Monats (Januar - Dezember)
    3. Das Skript geht (für die Feiertage) vom Bundesland "Sachsen" aus (hardcoded, bisher keine Clicks-Option)
    4. Feiertage sind gelb markiert
+<details>
+   <summary> To-Do's</summary>
 
+   1. Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
+   2. Clicks-Option zur genauen Definition des Feiertagzuschlages
+   3. Wochenend- und Nachtzuschläge (entsprechende Clicks-Option)
+   4. Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
+   5. GUI für nutzerfreundlichere Bedienung
+      
+   
+</details>
 <details>
 <summary>Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
 
