@@ -48,7 +48,7 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
    2. Clicks-Option zur genauen Definition des Feiertagzuschlages
    3. Wochenend- und Nachtzuschläge (entsprechende Clicks-Option)
-   4. Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
+   4. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
    5. GUI für nutzerfreundlichere Bedienung
       
    
