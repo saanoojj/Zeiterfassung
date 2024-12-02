@@ -17,7 +17,7 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
 <details>
    <summary> To-Do's</summary>
 </br>
-   </br>
+   
    1. Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
    2. Clicks-Option zur genauen Definition des Feiertagzuschlages
    3. Wochenend- und Nachtzuschläge (entsprechende Clicks-Option)
