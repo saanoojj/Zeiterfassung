@@ -10,7 +10,7 @@
 
 Die erstellte Excel-Datei enthält 13 'Data-Sheets'
 
-   1. Sheet enthält eine Gesamtübersicht der geleisteten Stunden und des gesamt erwirtschafteten Lohn
+   1. Das erste 'Data-Sheet' enthält eine Gesamtübersicht der geleisteten Stunden und des gesamt erwirtschafteten Lohn
    2. 'Data-Sheet' 2-13 enthält die Tabelle des jeweiligen Monats (Januar - Dezember)
    3. Das Skript geht (für die Feiertage) vom Bundesland "Sachsen" aus (hardcoded, bisher keine Clicks-Option)
    4. Feiertage sind gelb markiert
