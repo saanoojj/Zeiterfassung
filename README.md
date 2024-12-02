@@ -26,7 +26,7 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    
 </details>
 <details>
-<summary>Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
+<summary> Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
 
 ### Standardverwendung
 ```bash
