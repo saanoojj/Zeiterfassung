@@ -4,8 +4,8 @@
 
 - "-d" oder "--dateiname" fügt nachfolgenden Text in den Dateinamen (Zeiterfassung_*_2024.xlsx) ein
 - "-z" oder "--zuschlag" aktiviert die Feiertagszuschlagsrechung (Standardwert bei 50%, hardcoded)
-- "-g" oder "--gehalt" verändert den Stundenlohn entsprechend, Standard liegt bei 12,50€
-- "-bl" oder "--bundesland" wählt ein Bundesland für die korrekte Erkennung von Feiertagen. Ohne Angabe werden nur die generellen Feiertage (Bundesweite) markiert.
+- "-g" oder "--gehalt" verändert den Stundenlohn entsprechend (Standard liegt bei 12,50€)
+- "-bl" oder "--bundesland" wählt ein Bundesland für die korrekte Erkennung von Feiertagen. </br>   Ohne Angabe werden nur die generellen Feiertage (Bundesweite) markiert.
 
 #### Bundesländer
 
