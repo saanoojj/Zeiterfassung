@@ -6,6 +6,15 @@
 - "-z" oder "--zuschlag" aktiviert die Feiertagszuschlagsrechung (Standardwert bei 50%, hardcoded)
 - "-g" oder "--gehalt" verändert den Stundenlohn entsprechend, Standard liegt bei 12,50€
 
+### Excel Datei
+
+Die erstellte Excel-Datei enthält 13 'Data-Sheets'
+
+   1. Sheet enthält eine Gesamtübersicht der geleisteten Stunden und des gesamt erwirtschafteten Lohn
+   2. 'Data-Sheet' 2-13 enthält die Tabelle des jeweiligen Monats (Januar - Dezember)
+   3. Das Skript geht (für die Feiertage) vom Bundesland "Sachsen" aus (hardcoded, bisher keine Clicks-Option)
+   4. Feiertage sind gelb markiert
+
 <details>
 <summary>Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
 
