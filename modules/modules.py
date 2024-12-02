@@ -8,6 +8,7 @@ from openpyxl import Workbook
 
 FEIERTAGSZUSCHLAG = 1.5
 
+
 def get_saxony_holidays(bundesland, jahr, monat):
     bl = bundesland
     de_holidays = holidays.DE(prov=bl, years=jahr)
@@ -85,7 +86,8 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holi
         worksheet.cell(row=row_offset + 1, column=tag + 1, value=stunden_formel)
         
         # Grundlohn
-        worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*{stundenlohn}, 2)")
+        #worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*{stundenlohn}, 2)")
+        worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*\'Übersicht\'!E4, 2)")
         
         if use_holiday_bonus:
             feiertagsformel = f"=ROUND({spalte}{row_offset + 2}*0.5, 2)" if tag in feiertage else "=0"
@@ -134,7 +136,7 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holi
         for col in range(1, tage_im_monat + 3):
             worksheet.cell(row=row, column=col).border = no_border
 
-def create_overview_sheet(workbook, monatsnamen):
+def create_overview_sheet(workbook, monatsnamen, stundenlohn):
     overview = workbook.create_sheet("Übersicht", 0)
     overview.cell(row=1, column=1, value="Jahresübersicht")
     
@@ -142,6 +144,8 @@ def create_overview_sheet(workbook, monatsnamen):
     overview.cell(row=3, column=1, value="Monat")
     overview.cell(row=3, column=2, value="Gesamtstunden")
     overview.cell(row=3, column=3, value="Gesamtlohn")
+    overview.cell(row=3, column=5, value="Stundenlohn")
+    overview.cell(row=4, column=5, value=stundenlohn)
     
     # Daten für jeden Monat mit ROUND-Funktion
     for monat in range(1, 13):
@@ -159,7 +163,7 @@ def create_overview_sheet(workbook, monatsnamen):
     # Füge Gitterlinien zur Übersicht hinzu
     apply_borders(overview, 3, 16, 1, 3)
 
-def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=False, stundenlohn=12.50):
+def create_monthly_schedule(dateiname=None, bundesland=None, stundenlohn=None, use_holiday_bonus=False):
     heute = datetime.now()
     jahr = heute.year
     monatsnamen = {
@@ -174,7 +178,7 @@ def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=F
         excel_dateiname = f"Zeitplan_{jahr}.xlsx"
     
     workbook = Workbook()
-    create_overview_sheet(workbook, monatsnamen)
+    create_overview_sheet(workbook, monatsnamen, stundenlohn)
     
     for monat in range(1, 13):
         sheet = workbook.create_sheet(monatsnamen[monat])
