@@ -13,23 +13,24 @@ Für die Erkennung der Feiertage wird das Module 'holidys' verwendet!
 
 <details>
    <summary> Mögliche Optionen</summary>
-   
-1. BB (Brandenburg)
-2. BE (Berlin)
-3. BW (Baden-Württemberg)
-4. BY (Bayern)
-5. HB (Bremen)
-6. HE (Hessen)
-7. HH (Hamburg)
-8. MV (Mecklenburg-Vorpommern)
-9. NI (Niedersachsen)
-10. NW (Nordrhein-Westfalen)
-11. RP (Rheinland-Pfalz)
-12. SH (Schleswig-Holstein)
-13. SL (Saarland)
-14. SN (Sachsen)
-15. ST (Sachsen-Anhalt)
-16. TH (Thüringen)
+</br>
+</br>
+   1. BB (Brandenburg)
+   2. BE (Berlin)
+   3. BW (Baden-Württemberg)
+   4. BY (Bayern)
+   5. HB (Bremen)
+   6. HE (Hessen)
+   7. HH (Hamburg)
+   8. MV (Mecklenburg-Vorpommern)
+   9. NI (Niedersachsen)
+   10. NW (Nordrhein-Westfalen)
+   11. RP (Rheinland-Pfalz)
+   12. SH (Schleswig-Holstein)
+   13. SL (Saarland)
+   14. SN (Sachsen)
+   15. ST (Sachsen-Anhalt)
+   16. TH (Thüringen)
 
 </details>
 
@@ -46,10 +47,9 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
 </br>
    
    1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
-   2. Clicks-Option zur genauen Definition des Feiertagzuschlages
-   3. Wochenend- und Nachtzuschläge (entsprechende Clicks-Option)
-   4. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
-   5. GUI für nutzerfreundlichere Bedienung
+   2. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
+   3. Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
+   4. GUI für nutzerfreundlichere Bedienung (Custom TKinter)
       
    
 </details>
