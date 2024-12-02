@@ -14,7 +14,7 @@ Für die Erkennung der Feiertage wird das Module 'holidys' verwendet!
 <details>
    <summary> Mögliche Optionen</summary>
 </br>
-</br>
+   
    1. BB (Brandenburg)
    2. BE (Berlin)
    3. BW (Baden-Württemberg)
