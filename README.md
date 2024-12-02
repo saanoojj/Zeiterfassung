@@ -80,6 +80,15 @@ py main.py --zuschlag
 ```bash
 py main.py -z
 ```
+
+### Definition Bundesland (Bsp.: Sachsen)
+```bash
+py main.py --bundesland SN
+```
+
+```bash
+py main.py -bl SN
+```
 Aktiviert die Feiertagszuschlagsberechnung (50%)
 
 ### Mit eigenem Dateinamen
