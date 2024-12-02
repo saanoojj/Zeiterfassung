@@ -8,8 +8,9 @@ from openpyxl import Workbook
 
 FEIERTAGSZUSCHLAG = 1.5
 
-def get_saxony_holidays(jahr, monat):
-    de_holidays = holidays.DE(prov='SN', years=jahr)
+def get_saxony_holidays(bundesland, jahr, monat):
+    bl = bundesland
+    de_holidays = holidays.DE(prov=bl, years=jahr)
     feiertage = []
     for datum, name in de_holidays.items():
         if datum.month == monat:
@@ -28,9 +29,9 @@ def apply_borders(worksheet, start_row, end_row, start_col, end_col):
         for col in range(start_col, end_col + 1):
             worksheet.cell(row=row, column=col).border = thin_border
 
-def create_month_sheet(worksheet, jahr, monat, monatsnamen, use_holiday_bonus, stundenlohn):
+def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus, stundenlohn):
     _, tage_im_monat = calendar.monthrange(jahr, monat)
-    feiertage = get_saxony_holidays(jahr, monat)
+    feiertage = get_saxony_holidays(bundesland, jahr, monat)
     
     # Erstelle Zeitintervalle (Stunden)
     zeitintervalle = []
@@ -158,10 +159,9 @@ def create_overview_sheet(workbook, monatsnamen):
     # Füge Gitterlinien zur Übersicht hinzu
     apply_borders(overview, 3, 16, 1, 3)
 
-def create_monthly_schedule(dateiname=None, use_holiday_bonus=False, stundenlohn=12.50):
+def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=False, stundenlohn=12.50):
     heute = datetime.now()
     jahr = heute.year
-    
     monatsnamen = {
         1: "Januar", 2: "Februar", 3: "März", 4: "April",
         5: "Mai", 6: "Juni", 7: "Juli", 8: "August",
@@ -178,7 +178,7 @@ def create_monthly_schedule(dateiname=None, use_holiday_bonus=False, stundenlohn
     
     for monat in range(1, 13):
         sheet = workbook.create_sheet(monatsnamen[monat])
-        create_month_sheet(sheet, jahr, monat, monatsnamen, use_holiday_bonus, stundenlohn)
+        create_month_sheet(sheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus, stundenlohn)
     
     if "Sheet" in workbook.sheetnames:
         workbook.remove(workbook["Sheet"])
