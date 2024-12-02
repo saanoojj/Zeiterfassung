@@ -5,6 +5,33 @@
 - "-d" oder "--dateiname" fügt nachfolgenden Text in den Dateinamen (Zeiterfassung_*_2024.xlsx) ein
 - "-z" oder "--zuschlag" aktiviert die Feiertagszuschlagsrechung (Standardwert bei 50%, hardcoded)
 - "-g" oder "--gehalt" verändert den Stundenlohn entsprechend, Standard liegt bei 12,50€
+- "-bl" oder "--bundesland" wählt ein Bundesland für die korrekte Erkennung von Feiertagen. Ohne Angabe werden nur die generellen Feiertage (Bundesweite) markiert.
+
+#### Bundesländer
+
+Für die Erkennung der Feiertage wird das Module 'holidys' verwendet!
+
+<details>
+   <summary> Mögliche Optionen</summary>
+   
+1. BB (Brandenburg)
+2. BE (Berlin)
+3. BW (Baden-Württemberg)
+4. BY (Bayern)
+5. HB (Bremen)
+6. HE (Hessen)
+7. HH (Hamburg)
+8. MV (Mecklenburg-Vorpommern)
+9. NI (Niedersachsen)
+10. NW (Nordrhein-Westfalen)
+11. RP (Rheinland-Pfalz)
+12. SH (Schleswig-Holstein)
+13. SL (Saarland)
+14. SN (Sachsen)
+15. ST (Sachsen-Anhalt)
+16. TH (Thüringen)
+
+</details>
 
 ### Excel Datei
 
@@ -18,7 +45,7 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    <summary> To-Do's</summary>
 </br>
    
-   1. Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
+   1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
    2. Clicks-Option zur genauen Definition des Feiertagzuschlages
    3. Wochenend- und Nachtzuschläge (entsprechende Clicks-Option)
    4. Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
