@@ -2,7 +2,7 @@
 
 ## Download for precompiled application
 
-- macOS: https://drive.proton.me/urls/HV1PYVCHSC#jIKdYQSJJry0 (extract .zip) </br>
+- macOS: https://drive.proton.me/urls/8SFQJ2EZ28#tRvsK9k9B3B8 (extract .zip) </br>
   compiled with: pyinstaller --name Excel-Stundenliste --icon=icon.png --windowed  --collect-all customtkinter  main.py </br>
   Icon used: https://tinyurl.com/3hckak56 (if you are the righhtsowner and want it to be removed, please dont hesitate to contact me!)
 
