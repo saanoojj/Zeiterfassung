@@ -1,14 +1,14 @@
-# modules/gui.py
 import os
 import customtkinter as ctk
+from tkinter import filedialog
 from .modules import create_monthly_schedule
 
 class MonthlyScheduleApp:
     def __init__(self):
         # Fenster-Setup
         self.window = ctk.CTk()
-        self.window.title("Jahresliste Stundenübersicht")
-        self.window.geometry("600x400")
+        self.window.title("Excel Stundenlisten Generator")
+        self.window.geometry("600x600")
         
         # Theme und Aussehen
         ctk.set_appearance_mode("dark")
@@ -19,7 +19,7 @@ class MonthlyScheduleApp:
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
         
         # Überschrift
-        self.label = ctk.CTkLabel(self.frame, text="Jahresliste Stundenübersicht", 
+        self.label = ctk.CTkLabel(self.frame, text="Monatsplan-Generator", 
                                 font=ctk.CTkFont(size=20, weight="bold"))
         self.label.pack(pady=12, padx=10)
         
@@ -28,7 +28,7 @@ class MonthlyScheduleApp:
         self.filename_frame.pack(fill="x", pady=12, padx=10)
         self.filename_label = ctk.CTkLabel(self.filename_frame, text="Excel-Dateiname:")
         self.filename_label.pack(side="left", padx=5)
-        self.filename_entry = ctk.CTkEntry(self.filename_frame, placeholder_text="Namenseinschub hier eingeben!")
+        self.filename_entry = ctk.CTkEntry(self.filename_frame, placeholder_text="Name (ohne .xlsx)")
         self.filename_entry.pack(side="left", expand=True, fill="x", padx=5)
         
         # Bundesland Auswahl
@@ -73,6 +73,24 @@ class MonthlyScheduleApp:
         self.gehalt_entry.insert(0, "12.50")
         self.gehalt_entry.pack(side="left", expand=True, fill="x", padx=5)
         
+        # Speicherort Frame
+        self.save_path_frame = ctk.CTkFrame(self.frame)
+        self.save_path_frame.pack(fill="x", pady=12, padx=10)
+        self.save_path_label = ctk.CTkLabel(self.save_path_frame, text="Speicherort:")
+        self.save_path_label.pack(side="left", padx=5)
+        self.save_path_entry = ctk.CTkEntry(self.save_path_frame)
+        self.save_path_entry.pack(side="left", expand=True, fill="x", padx=5)
+        self.save_path_button = ctk.CTkButton(
+            self.save_path_frame,
+            text="Durchsuchen",
+            command=self.choose_directory
+        )
+        self.save_path_button.pack(side="left", padx=5)
+        
+        # Setze Standard-Speicherort auf Documents
+        default_path = os.path.expanduser("~/Documents")
+        self.save_path_entry.insert(0, default_path)
+        
         # Feiertagszuschlag Checkbox
         self.zuschlag_var = ctk.BooleanVar()
         self.zuschlag_checkbox = ctk.CTkCheckBox(
@@ -98,6 +116,14 @@ class MonthlyScheduleApp:
         )
         self.status_label.pack(pady=12, padx=10)
 
+    def choose_directory(self):
+        directory = filedialog.askdirectory(
+            initialdir=self.save_path_entry.get()
+        )
+        if directory:
+            self.save_path_entry.delete(0, 'end')
+            self.save_path_entry.insert(0, directory)
+
     def generate_schedule(self):
         try:
             # Eingabevalidierung
@@ -121,6 +147,15 @@ class MonthlyScheduleApp:
                 )
                 return
             
+            # Speicherort-Validierung
+            save_path = self.save_path_entry.get().strip()
+            if not save_path or not os.path.isdir(save_path):
+                self.status_label.configure(
+                    text="Bitte wählen Sie einen gültigen Speicherort!",
+                    text_color="red"
+                )
+                return
+            
             bundesland = self.bundesland_var.get()
             zuschlag = self.zuschlag_var.get()
             
@@ -129,7 +164,8 @@ class MonthlyScheduleApp:
                 dateiname=filename,
                 bundesland=bundesland,
                 use_holiday_bonus=zuschlag,
-                stundenlohn=gehalt
+                stundenlohn=gehalt,
+                save_path=save_path
             )
             
             # Erfolgsmeldung mit Dateipfad

@@ -1,4 +1,5 @@
 import calendar
+import os
 from datetime import datetime, timedelta, date
 import pandas as pd
 import holidays
@@ -162,7 +163,7 @@ def create_overview_sheet(workbook, monatsnamen, stundenlohn):
     # Füge Gitterlinien zur Übersicht hinzu
     apply_borders(overview, 3, 16, 1, 3)
 
-def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=False, stundenlohn=None,):
+def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=False, stundenlohn=None, save_path=None):
     heute = datetime.now()
     jahr = heute.year
     monatsnamen = {
@@ -175,6 +176,10 @@ def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=F
         excel_dateiname = f"Zeitplan_{dateiname}_{jahr}.xlsx"
     else:
         excel_dateiname = f"Zeitplan_{jahr}.xlsx"
+    
+    # Wenn save_path angegeben ist, füge es zum Dateinamen hinzu
+    if save_path:
+        excel_dateiname = os.path.join(save_path, excel_dateiname)
     
     workbook = Workbook()
     create_overview_sheet(workbook, monatsnamen, stundenlohn)
