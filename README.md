@@ -118,7 +118,7 @@ Verwendet alle verfügbaren Optionen
    1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
    2. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
    3. Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
-   4. GUI für nutzerfreundlichere Bedienung (Custom TKinter)
+   4. DONE! GUI für nutzerfreundlichere Bedienung (Custom TKinter)
       
    
 </details>
