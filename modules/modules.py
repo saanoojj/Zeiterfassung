@@ -30,7 +30,7 @@ def apply_borders(worksheet, start_row, end_row, start_col, end_col):
         for col in range(start_col, end_col + 1):
             worksheet.cell(row=row, column=col).border = thin_border
 
-def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus, stundenlohn):
+def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus):
     _, tage_im_monat = calendar.monthrange(jahr, monat)
     feiertage = get_saxony_holidays(bundesland, jahr, monat)
     
@@ -86,11 +86,10 @@ def create_month_sheet(worksheet, jahr, monat, monatsnamen, bundesland, use_holi
         worksheet.cell(row=row_offset + 1, column=tag + 1, value=stunden_formel)
         
         # Grundlohn
-        #worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*{stundenlohn}, 2)")
         worksheet.cell(row=row_offset + 2, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 1}*\'Übersicht\'!E4, 2)")
         
         if use_holiday_bonus:
-            feiertagsformel = f"=ROUND({spalte}{row_offset + 2}*0.5, 2)" if tag in feiertage else "=0"
+            feiertagsformel = f"=ROUND({spalte}{row_offset + 2}*0.5, 2)" if tag in feiertage else "=0" #hier steh'da!
             worksheet.cell(row=row_offset + 3, column=tag + 1, value=feiertagsformel)
             worksheet.cell(row=row_offset + 4, column=tag + 1, value=f"=ROUND({spalte}{row_offset + 2}+{spalte}{row_offset + 3}, 2)")
         else:
@@ -163,7 +162,7 @@ def create_overview_sheet(workbook, monatsnamen, stundenlohn):
     # Füge Gitterlinien zur Übersicht hinzu
     apply_borders(overview, 3, 16, 1, 3)
 
-def create_monthly_schedule(dateiname=None, bundesland=None, stundenlohn=None, use_holiday_bonus=False):
+def create_monthly_schedule(dateiname=None, bundesland=None, use_holiday_bonus=False, stundenlohn=None,):
     heute = datetime.now()
     jahr = heute.year
     monatsnamen = {
@@ -182,7 +181,7 @@ def create_monthly_schedule(dateiname=None, bundesland=None, stundenlohn=None, u
     
     for monat in range(1, 13):
         sheet = workbook.create_sheet(monatsnamen[monat])
-        create_month_sheet(sheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus, stundenlohn)
+        create_month_sheet(sheet, jahr, monat, monatsnamen, bundesland, use_holiday_bonus)
     
     if "Sheet" in workbook.sheetnames:
         workbook.remove(workbook["Sheet"])
