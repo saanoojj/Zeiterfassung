@@ -1,4 +1,4 @@
-import click
+""" import click
 from modules.modules import create_monthly_schedule
 @click.command()
 @click.option('--dateiname', '-d', help='Name der Excel-Datei (ohne .xlsx)')
@@ -10,6 +10,15 @@ def main(dateiname, bundesland, zuschlag, gehalt):
     
     erstellte_datei = create_monthly_schedule(dateiname, bundesland, zuschlag, gehalt)
     print(f"Excel-Datei wurde erstellt: {erstellte_datei}")
+
+if __name__ == "__main__":
+    main() """
+    
+from modules.gui import MonthlyScheduleApp
+
+def main():
+    app = MonthlyScheduleApp()
+    app.run()
 
 if __name__ == "__main__":
     main()
