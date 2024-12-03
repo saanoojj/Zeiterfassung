@@ -7,7 +7,7 @@ class MonthlyScheduleApp:
     def __init__(self):
         # Fenster-Setup
         self.window = ctk.CTk()
-        self.window.title("Monatsplan-Generator")
+        self.window.title("Jahresliste Stundenübersicht")
         self.window.geometry("600x400")
         
         # Theme und Aussehen
@@ -19,7 +19,7 @@ class MonthlyScheduleApp:
         self.frame.pack(pady=20, padx=20, fill="both", expand=True)
         
         # Überschrift
-        self.label = ctk.CTkLabel(self.frame, text="Monatsplan-Generator", 
+        self.label = ctk.CTkLabel(self.frame, text="Jahresliste Stundenübersicht", 
                                 font=ctk.CTkFont(size=20, weight="bold"))
         self.label.pack(pady=12, padx=10)
         
@@ -28,7 +28,7 @@ class MonthlyScheduleApp:
         self.filename_frame.pack(fill="x", pady=12, padx=10)
         self.filename_label = ctk.CTkLabel(self.filename_frame, text="Excel-Dateiname:")
         self.filename_label.pack(side="left", padx=5)
-        self.filename_entry = ctk.CTkEntry(self.filename_frame, placeholder_text="Name (ohne .xlsx)")
+        self.filename_entry = ctk.CTkEntry(self.filename_frame, placeholder_text="Namenseinschub hier eingeben!")
         self.filename_entry.pack(side="left", expand=True, fill="x", padx=5)
         
         # Bundesland Auswahl
