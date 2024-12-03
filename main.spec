@@ -6,17 +6,17 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[
+        ('venv/lib/python3.13/site-packages/holidays', 'holidays'),
+        ('venv/lib/python3.13/site-packages/holidays/countries', 'holidays/countries')
+    ],
     hiddenimports=[
-        'pandas', 
-        'openpyxl', 
-        'holidays', 
-        'holidays.constants',
+        'holidays',
         'holidays.holiday_base',
         'holidays.utils',
-        'holidays.countries',
+        'holidays.constants',
         'holidays.countries.germany',
-        'click'
+        'holidays.countries'
     ],
     hookspath=[],
     hooksconfig={},
@@ -27,25 +27,40 @@ a = Analysis(
     cipher=block_cipher,
     noarchive=False
 )
+
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 
 exe = EXE(
     pyz,
     a.scripts,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
     [],
+    exclude_binaries=True,
     name='Zeiterfassung',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    upx_exclude=[],
-    runtime_tmpdir=None,
-    console=True,
+    console=False,
     disable_windowed_traceback=False,
     target_arch=None,
     codesign_identity=None,
-    entitlements_file=None
+    entitlements_file=None,
+)
+
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    name='Zeiterfassung'
+)
+
+app = BUNDLE(
+    coll,
+    name='Excel-Stundenlisten-Generator.app',
+    icon='icon.png',
+    bundle_identifier=None,
 )
