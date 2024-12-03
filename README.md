@@ -3,11 +3,12 @@
 ## Download for precompiled application
 
 - macOS: https://drive.proton.me/urls/HV1PYVCHSC#jIKdYQSJJry0 (extract .zip) </br>
-  compiled with: pyinstaller --name Excel-Stundenliste --icon=icon.png --windowed  --collect-all customtkinter  main.py
+  compiled with: pyinstaller --name Excel-Stundenliste --icon=icon.png --windowed  --collect-all customtkinter  main.py </br>
+  Icon used: https://tinyurl.com/3hckak56 (if you are the righhtsowner and want it to be removed, please dont hesitate to contact me!)
 
 ### Dateiname
 
---
+Einschub in Standardbenennung, notwendig um schon erstellte/verwendete nicht zu überschreiben
 
 ### Zuschlag
 
@@ -15,7 +16,7 @@ Momentan defekt/nicht funktionsfahig!
 
 ### Gehalt
 
-standard liegt bei 12.50€ ("Punkt" nicht "Komma" zur Trennung verwenden!)
+Standard liegt bei 12.50€ ("Punkt" nicht "Komma" zur Trennung verwenden!)
 
 
 ### Bundesländer
@@ -54,60 +55,6 @@ Die erstellte Excel-Datei enthält 13 'Data-Sheets'
    3. Das Skript geht (für die Feiertage) vom Bundesland "Sachsen" aus (hardcoded, bisher keine Clicks-Option)
    4. Feiertage sind gelb markiert
 
-<details>
-<summary> Beispiele für die Verwendung (klicken zum Ausklappen)</summary>
-
-### Standardverwendung
-```bash
-py main.py
-```
-Erstellt eine Excel-Datei mit Standardstundenlohn (12,50€) ohne Feiertagszuschlag
-
-### Mit angepasstem Stundenlohn
-```bash
-py main.py --gehalt 14.50
-```
-
-```bash
-py main.py -g 14.50
-```
-Verwendet 14,50€ als Stundenlohn
-
-### Mit Feiertagszuschlag
-```bash
-py main.py --zuschlag
-```
-
-```bash
-py main.py -z
-```
-
-### Definition Bundesland (Bsp.: Sachsen)
-```bash
-py main.py --bundesland SN
-```
-
-```bash
-py main.py -bl SN
-```
-Aktiviert die Feiertagszuschlagsberechnung (50%)
-
-### Mit eigenem Dateinamen
-```bash
-py main.py --dateiname MeineZeiterfassung
-```
-
-```bash
-py main.py -d MeineZeiterfassung
-```
-Erstellt "Zeitplan_MeineZeiterfassung_2024.xlsx"
-
-### Alle Optionen kombiniert
-```bash
-py main.py -d MeineZeiterfassung -g 14.50 -z
-```
-Verwendet alle verfügbaren Optionen
-</details>
 
 <details>
    <summary> To-Do's</summary>
@@ -115,7 +62,7 @@ Verwendet alle verfügbaren Optionen
    
    1. DONE! Clicks-Option zur Auswahl des Bundeslandes (für korrekte Eintragung Feiertage)
    2. DONE! Grundgehalt als feste Konstante auf 'Data-Sheet' 1 (zur einfachen Anpassung)
-   3. Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
+   3. --no click anymore-- Clicks-Option zur genauen Definition des Feiertagzuschlages & Wochenend- & Nachtzuschläge (entsprechende Clicks-Option)
    4. DONE! GUI für nutzerfreundlichere Bedienung (Custom TKinter)
       
    
