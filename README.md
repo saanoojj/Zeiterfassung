@@ -1,11 +1,9 @@
 # Pythonskript zur Erstellung einer Zeiterfassungsliste (output in .xlsx)
 
-## Clicks Optionen
+## Download for precompiled application
 
-- "-d" oder "--dateiname" fügt nachfolgenden Text in den Dateinamen (Zeiterfassung_*_2024.xlsx) ein
-- "-z" oder "--zuschlag" aktiviert die Feiertagszuschlagsrechung (Standardwert bei 50%, hardcoded)
-- "-g" oder "--gehalt" verändert den Stundenlohn entsprechend
-- "-bl" oder "--bundesland" wählt ein Bundesland für die korrekte Erkennung von Feiertagen. </br>   Ohne Angabe werden nur die generellen Feiertage (Bundesweite) markiert.
+- macOS: https://drive.proton.me/urls/HV1PYVCHSC#jIKdYQSJJry0 (extract .zip) </br>
+  compiled with: pyinstaller --name Excel-Stundenliste --icon=icon.png --windowed  --collect-all customtkinter  main.py
 
 ### Dateiname
 
